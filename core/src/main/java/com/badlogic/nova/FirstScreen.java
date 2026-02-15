@@ -43,7 +43,7 @@ public class FirstScreen implements Screen {
     @Override
     public void show() {
         //添加空格监听
-        listenList.add(new PressToStart());
+        listenList.add(new PressToStart(this));
     }
 
     @Override
@@ -56,7 +56,7 @@ public class FirstScreen implements Screen {
     private void input(float delta) {
         //遍历监听列表
         for (Input i : listenList){
-            i.listen(this);
+            i.listen();
         }
     }
 
@@ -77,10 +77,8 @@ public class FirstScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
         if(width <= 0 || height <= 0) return;
         viewport.update(width, height);
-
     }
 
     @Override

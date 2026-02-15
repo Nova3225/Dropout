@@ -5,14 +5,21 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.nova.FightScreen;
 import com.badlogic.nova.FirstScreen;
 
-public class PressToStart implements Input {
+import java.util.logging.Logger;
 
-    @Override
-    public void listen(Screen firstScreen) {
-        if (Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.SPACE)){
-            System.out.println(1);
-            ((FirstScreen)firstScreen).game.setScreen(new FightScreen(((FirstScreen)firstScreen).game));
-        }
+public class PressToStart extends Input {
+
+    Logger log = Logger.getGlobal();
+
+    public PressToStart(Screen screen) {
+        super(screen);
     }
 
+    @Override
+    public void listen() {
+        if (Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.SPACE)){
+            log.info("切换屏幕到" + "FightScreen");
+            ((FirstScreen)screen).game.setScreen(new FightScreen(((FirstScreen)screen).game));
+        }
+    }
 }
