@@ -10,7 +10,6 @@ public class Player {
 
     public Player(World world){
         PlayerFactory playerFactory = new PlayerFactory(world);
-
         body = playerFactory.createPlayer();
     }
 

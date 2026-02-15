@@ -3,33 +3,32 @@ package com.badlogic.nova.factory;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
-public class PlayerFactory {
+public class MonsterFactory {
 
     World world;
 
-    public PlayerFactory(World world){
+    public MonsterFactory(World world){
         this.world = world;
     }
 
-    public Body createPlayer() {
+    public Body createMonster(){
         BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(new Vector2(0, -4));
-        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        bodyDef.position.set(new Vector2(0, 2));
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.fixedRotation = true;
 
         Body body = world.createBody(bodyDef);
 
         Shape shape = new CircleShape();
-        shape.setRadius(0.2f);
+        shape.setRadius(0.4f);
 
         FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.density = 0.1f;
-        fixtureDef.friction = 0.1f;
-        fixtureDef.restitution = 0.1f;
         fixtureDef.shape = shape;
+        fixtureDef.isSensor = true;
+
         shape.dispose();
 
-        body.setUserData("Player");
+        body.setUserData("Monster");
         body.createFixture(fixtureDef);
 
         return body;
